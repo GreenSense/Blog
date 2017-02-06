@@ -4,9 +4,9 @@
 
 # Site
 title: GreenSense
-subtitle:
+subtitle: Plant related technologies
 description:
-author: CompulsiveCoder
+author: --USER--
 language:
 timezone:
 
@@ -69,5 +69,5 @@ theme: clean-blog
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
 - type: git
-  repo: https://CompulsiveCoder:--PASS--@github.com/GreenSense/Blog.git
+  repo: https://--USER--:--PASS--@github.com/GreenSense/Blog.git
   branch: master
