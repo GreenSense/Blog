@@ -6,7 +6,6 @@ git config filter.password.clean "sed -e 's/--PASS--/--PASS--/' -e 's/--USER--/-
 #git config filter.password.smudge "sed -e 's/[PasswordPlaceHolder]/[RealPassword]/' -e 's/[SSIDPlaceHolder]/[RealSSID]/'"
 git config filter.password.smudge "sed -e 's/--PASS--/--PASS--/' -e 's/--USER--/--USER--/'"
 
-
 cat > .git/info/attributes << EOF
 ** filter=password
 EOF
