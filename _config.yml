@@ -6,7 +6,7 @@
 title: GreenSense
 subtitle: Plant related technologies
 description:
-author: --USER--
+author: CompulsiveCoder
 language:
 timezone:
 
@@ -68,6 +68,8 @@ theme: clean-blog
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-- type: git
-  repo: https://--USER--:--PASS--@github.com/GreenSense/Blog.git
+  type: git
+  repo: https://github.com/GreenSense/Blog.git
   branch: master
+
+disqus_shortname: GreenSenseBlog
