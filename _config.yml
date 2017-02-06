@@ -6,7 +6,7 @@
 title: GreenSense
 subtitle:
 description:
-author: John Doe
+author: CompulsiveCoder
 language:
 timezone:
 
@@ -69,5 +69,5 @@ theme: clean-blog
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
 - type: git
-  repo: https://CompulsiveCoder:password@github.com/GreenSense/Blog.git
+  repo: https://CompulsiveCoder:--PASS--@github.com/GreenSense/Blog.git
   branch: master
