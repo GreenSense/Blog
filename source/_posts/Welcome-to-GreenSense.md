@@ -5,9 +5,9 @@ tags:
 ---
 Welcome to the GreenSense blog.
 
-Created in partnership with [Sensorica](www.sensorica.ca), the GreenSense network aims to develop technologies for helping to grow food and manage gardens.
+Created in partnership with [Sensorica](http://www.sensorica.co), the GreenSense network aims to develop technologies for helping to grow food and manage gardens.
 
-Note: The GreenSense project has also been dubbed the eCommunityGarden.
+Note: The GreenSense project is also known as the eCommunityGarden.
 
 More information about the project can be found here:
 - [Google Group](https://groups.google.com/forum/#!forum/sensorica-ecg)
