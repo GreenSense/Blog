@@ -441,3 +441,9 @@ img::-moz-selection {
 body {
   webkit-tap-highlight-color: #0085a1;
 }
+/* Custom Styles */
+article table td,
+article table th {
+  border: solid 1px #eee;
+  padding: 4px;
+}

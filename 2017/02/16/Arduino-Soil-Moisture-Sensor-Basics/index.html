@@ -10,7 +10,7 @@
 
     <!--Description-->
     
-        <meta name="description" content="The electronics inside the irrigator prototype:">
+        <meta name="description" content="IntroductionSoil moisture sensors can be used to determine approximately how much moisture is in soil, based on how much electricity the soil conducts">
     
 
     <!--Author-->
@@ -20,7 +20,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Inside the Irrigator Prototype"/>
+        <meta property="og:title" content="Arduino Soil Moisture Sensor Basics"/>
     
 
     <!--Open Graph Description-->
@@ -42,7 +42,7 @@
 
     <!-- Title -->
     
-    <title>Inside the Irrigator Prototype - GreenSense</title>
+    <title>Arduino Soil Moisture Sensor Basics - GreenSense</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
@@ -147,12 +147,12 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <h1>Inside the Irrigator Prototype</h1>
+                    <h1>Arduino Soil Moisture Sensor Basics</h1>
                     
                     <span class="meta">
                         <!-- Date and Author -->
                         
-                        2017-02-06
+                        2017-02-16
                     </span>
                 </div>
             </div>
@@ -173,10 +173,64 @@
 
             <!-- Post Main Content -->
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p>The electronics inside the irrigator prototype:</p>
-<p><img src="images/DSC04898.jpg" alt=""></p>
-<p><img src="images/DSC04911.jpg" alt=""></p>
-<p><img src="images/DSC04916.jpg" alt=""></p>
+                <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Soil moisture sensors can be used to determine approximately how much moisture is in soil, based on how much electricity the soil conducts.<br>While these resistive soil moisture sensors are not perfect, they can still be useful.</p>
+<p>This post presumes you’re familiar with the basics of uploading a sketch to an arduino and viewing the output via serial monitor.</p>
+<h2 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h2><ul>
+<li><a href="https://learn.sparkfun.com/tutorials/soil-moisture-sensor-hookup-guide" target="_blank" rel="external">Sparkfun Soil Moisture Sensor Hookup Guide</a></li>
+</ul>
+<h2 id="Sensor-Modules"><a href="#Sensor-Modules" class="headerlink" title="Sensor Modules"></a>Sensor Modules</h2><p>Multiple types of soil moisture sensor are available:</p>
+<h3 id="Two-Pin"><a href="#Two-Pin" class="headerlink" title="Two Pin"></a>Two Pin</h3><p><img src="images/DSC04953.jpg" alt=""></p>
+<p>A two pin soil moisture sensor needs to be connected via an adapter module:</p>
+<p><img src="images/DSC04961.jpg" alt=""></p>
+<h3 id="Three-Pin"><a href="#Three-Pin" class="headerlink" title="Three Pin"></a>Three Pin</h3><p><img src="images/DSC04956.jpg" alt=""></p>
+<h2 id="Wiring"><a href="#Wiring" class="headerlink" title="Wiring"></a>Wiring</h2><table>
+<thead>
+<tr>
+<th>Color</th>
+<th>Arduino</th>
+<th>2 Pin Sensor</th>
+<th>3 Pin Sensor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>blue</td>
+<td>A0</td>
+<td>A0</td>
+<td>S</td>
+</tr>
+<tr>
+<td>red</td>
+<td>V (5v)</td>
+<td>VCC</td>
+<td>+</td>
+</tr>
+<tr>
+<td>green</td>
+<td>G (GND)</td>
+<td>GND</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p><img src="images/DSC04946.jpg" alt=""></p>
+<p><img src="images/DSC04940.jpg" alt=""></p>
+<p>Note: The two pin soil moisture sensor has no polarity. It can be connected to the adapter module either way. The three pin connections however must be wired as indicated.</p>
+<h2 id="Test-the-Sensor"><a href="#Test-the-Sensor" class="headerlink" title="Test the Sensor"></a>Test the Sensor</h2><p>1) Open the AnalogReadSerial example sketch<br>    (File -&gt; Examples -&gt; Basic -&gt; AnalogReadSerial in Arduino IDE)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">void setup() &#123;</div><div class="line">  Serial.begin(9600);</div><div class="line">&#125;</div><div class="line"></div><div class="line">void loop() &#123;</div><div class="line">  int sensorValue = analogRead(A0);</div><div class="line">  Serial.println(sensorValue);</div><div class="line">  delay(1);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>2) Upload the sketch to your arduino</p>
+<p>3) Open up the serial monitor and ensure the baud rate is 9600. Depending on which sensor you’re using it might show something like this:</p>
+<p>Two Pin Sensor (dry)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">1022</div><div class="line">1023</div><div class="line">1022</div><div class="line">1023</div><div class="line">1023</div></pre></td></tr></table></figure>
+<p>Three Pin Sensor (dry)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">0</div><div class="line">0</div><div class="line">0</div><div class="line">0</div><div class="line">0</div></pre></td></tr></table></figure>
+<p>4) Put the soil moisture sensor into a glass of water and it should change to something like this:</p>
+<p>Two Pin Sensor (wet)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">302</div><div class="line">302</div><div class="line">302</div><div class="line">302</div><div class="line">302</div></pre></td></tr></table></figure>
+<p>Three Pin Sensor (wet)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">757</div><div class="line">758</div><div class="line">758</div><div class="line">758</div><div class="line">757</div></pre></td></tr></table></figure>
+<p>The numbers will vary depending on the sensor and various other factors.<br>It doesn’t matter what the numbers are as long as there is a significant difference between dry readings and submerged readings.</p>
+<p><a href="/Blog/2017/02/17/Arduino-Soil-Moisture-Sensor-Calibration/">Use software calibration</a> to turn these raw values into something more user friendly.</p>
 
 
                 

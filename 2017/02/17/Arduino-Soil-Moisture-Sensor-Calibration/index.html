@@ -10,9 +10,8 @@
 
     <!--Description-->
     
-        <meta name="description" content="Working PrototypeThe irrigator automatically pumps water to the plant when the soil moisture is low.
-
-Initial testing seems to show it works, however ">
+        <meta name="description" content="BasicsIf you’re not familiar with arduino based soil moisture sensors check out the soil moisture sensor basics.
+The ProblemSoil moisture sensors retu">
     
 
     <!--Author-->
@@ -22,7 +21,7 @@ Initial testing seems to show it works, however ">
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Irrigator Prototype"/>
+        <meta property="og:title" content="Arduino Soil Moisture Sensor Calibration"/>
     
 
     <!--Open Graph Description-->
@@ -44,7 +43,7 @@ Initial testing seems to show it works, however ">
 
     <!-- Title -->
     
-    <title>Irrigator Prototype - GreenSense</title>
+    <title>Arduino Soil Moisture Sensor Calibration - GreenSense</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
@@ -149,12 +148,12 @@ Initial testing seems to show it works, however ">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <h1>Irrigator Prototype</h1>
+                    <h1>Arduino Soil Moisture Sensor Calibration</h1>
                     
                     <span class="meta">
                         <!-- Date and Author -->
                         
-                        2017-02-03
+                        2017-02-17
                     </span>
                 </div>
             </div>
@@ -175,13 +174,44 @@ Initial testing seems to show it works, however ">
 
             <!-- Post Main Content -->
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <h2 id="Working-Prototype"><a href="#Working-Prototype" class="headerlink" title="Working Prototype"></a>Working Prototype</h2><p>The irrigator automatically pumps water to the plant when the soil moisture is low.</p>
-<p><img src="images/irrigator1-1024x1024.jpg" alt="Irrigator Prototype Assembled"></p>
-<p>Initial testing seems to show it works, however there’s still more testing and refining left to do.</p>
-<h2 id="Inside-the-Irrigator"><a href="#Inside-the-Irrigator" class="headerlink" title="Inside the Irrigator"></a>Inside the Irrigator</h2><p>The electronics inside the irrigator prototype:</p>
-<p><img src="images/DSC04898.jpg" alt=""></p>
-<p><img src="images/DSC04911.jpg" alt=""></p>
-<p><img src="images/DSC04916.jpg" alt=""></p>
+                <h2 id="Basics"><a href="#Basics" class="headerlink" title="Basics"></a>Basics</h2><p>If you’re not familiar with arduino based soil moisture sensors check out the <a href="/Blog/2017/02/16/Arduino-Soil-Moisture-Sensor-Basics/">soil moisture sensor basics</a>.</p>
+<h2 id="The-Problem"><a href="#The-Problem" class="headerlink" title="The Problem"></a>The Problem</h2><p>Soil moisture sensors return somewhat arbitrary values which need to be converted into something user friendly.</p>
+<p>Example readings:</p>
+<table>
+<thead>
+<tr>
+<th>Sensor</th>
+<th>Dry</th>
+<th>Wet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2 Pin</td>
+<td>1023</td>
+<td>292</td>
+</tr>
+<tr>
+<td>3 Pin</td>
+<td>0</td>
+<td>773</td>
+</tr>
+</tbody>
+</table>
+<p>In theory the full range for an arduino based soil moisture sensor is 0 to 1024. In practice some of that range is lost however shouldn’t matter.</p>
+<p>For a percentage output it’s preferrable to have a difference of at least 100 in order to get the full resolution of the sensor.<br>Ranges smaller than that may work but may not be as effective.</p>
+<h2 id="Calibration"><a href="#Calibration" class="headerlink" title="Calibration"></a>Calibration</h2><p>Calibration can be done using the map() function:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int friendlyValue = map(rawValue, dryValue, wetValue, friendlyDryValue, friendlyWetValue);</div></pre></td></tr></table></figure>
+<h2 id="Example-Sketch"><a href="#Example-Sketch" class="headerlink" title="Example Sketch"></a>Example Sketch</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">int dryValue = 0;</div><div class="line">int wetValue = 1024;</div><div class="line"></div><div class="line">int friendlyDryValue = 0;</div><div class="line">int friendlyWetValue = 100;</div><div class="line"></div><div class="line">void setup() &#123;</div><div class="line">  Serial.begin(9600);</div><div class="line">&#125;</div><div class="line"></div><div class="line">void loop() &#123;</div><div class="line">  int rawValue = analogRead(A0);</div><div class="line"></div><div class="line">  Serial.print(&quot;Raw: &quot;);</div><div class="line">  Serial.print(rawValue);</div><div class="line"></div><div class="line">  Serial.print(&quot; | &quot;);</div><div class="line">  </div><div class="line">  int friendlyValue = map(rawValue, dryValue, wetValue, friendlyDryValue, friendlyWetValue);</div><div class="line">  </div><div class="line">  Serial.print(&quot;Friendly: &quot;);</div><div class="line">  Serial.print(friendlyValue);</div><div class="line">  Serial.println(&quot;%&quot;);</div><div class="line">  </div><div class="line">  delay(500);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>That code should output a value between 0 and 100. But it will likely won’t go all the way to from 0 to 100 because the calibration isn’t specific to the soil moisture sensor.</p>
+<h2 id="Customise-the-Sketch"><a href="#Customise-the-Sketch" class="headerlink" title="Customise the Sketch"></a>Customise the Sketch</h2><p>Edit the following values in the sketch to match your minimum and maxium sensor readings:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">int dryValue = 0;</div><div class="line">int wetValue = 1024;</div></pre></td></tr></table></figure>
+<p>So they look like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">int dryValue = 0;</div><div class="line">int wetValue = 758;</div></pre></td></tr></table></figure>
+<p>.. or like this …</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">int dryValue = 1023;</div><div class="line">int wetValue = 302;</div></pre></td></tr></table></figure>
+<p>Note: Make sure you use values which match your sensor. If these values provided don’t work for your sensor then you will need to tweak them.</p>
+<p>Upload/run the modified sketch and now you should get values from 0 to 100 (or close). If you don’t then check the minimum and maximum readings and adjust the code again.</p>
 
 
                 
