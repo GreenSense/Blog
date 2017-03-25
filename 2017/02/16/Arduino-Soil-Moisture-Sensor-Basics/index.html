@@ -176,7 +176,8 @@
                 <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Soil moisture sensors can be used to determine approximately how much moisture is in soil, based on how much electricity the soil conducts.<br>While these resistive soil moisture sensors are not perfect, they can still be useful.</p>
 <p>This post presumes you’re familiar with the basics of uploading a sketch to an arduino and viewing the output via serial monitor.<br>If not then you should check out the <a href="/Blog/2017/02/16/Arduino-Basics/">arduino basics</a>.</p>
 <h2 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h2><ul>
-<li><a href="https://learn.sparkfun.com/tutorials/soil-moisture-sensor-hookup-guide" target="_blank" rel="external">Sparkfun Soil Moisture Sensor Hookup Guide</a></li>
+<li><a href="https://randomnerdtutorials.com/guide-for-soil-moisture-sensor-yl-69-or-hl-69-with-the-arduino/" target="_blank" rel="external">2 pin Soil Moisture Sensor Module Guide</a></li>
+<li><a href="https://learn.sparkfun.com/tutorials/soil-moisture-sensor-hookup-guide" target="_blank" rel="external">3 pin Soil Moisture Sensor Module Guide</a></li>
 </ul>
 <h2 id="Sensor-Modules"><a href="#Sensor-Modules" class="headerlink" title="Sensor Modules"></a>Sensor Modules</h2><p>Multiple types of soil moisture sensor are available:</p>
 <h3 id="Two-Pin"><a href="#Two-Pin" class="headerlink" title="Two Pin"></a>Two Pin</h3><p><img src="images/DSC04953.jpg" alt=""></p>
@@ -215,11 +216,11 @@
 </table>
 <p><img src="images/DSC04946.jpg" alt=""></p>
 <p><img src="images/DSC04940.jpg" alt=""></p>
-<p>Note: The two pin soil moisture sensor has no polarity. It can be connected to the adapter module either way. The three pin connections however must be wired as indicated.</p>
+<p>Note: The two pin soil moisture sensor itself has no polarity which is why there are no + and - symbols on it. It can be connected to the adapter module either way.</p>
 <h2 id="Test-the-Sensor"><a href="#Test-the-Sensor" class="headerlink" title="Test the Sensor"></a>Test the Sensor</h2><p>1) Open the AnalogReadSerial example sketch<br>    (File -&gt; Examples -&gt; Basic -&gt; AnalogReadSerial in Arduino IDE)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">void setup() &#123;</div><div class="line">  Serial.begin(9600);</div><div class="line">&#125;</div><div class="line"></div><div class="line">void loop() &#123;</div><div class="line">  int sensorValue = analogRead(A0);</div><div class="line">  Serial.println(sensorValue);</div><div class="line">  delay(1);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>2) Upload the sketch to your arduino</p>
-<p>3) Open up the serial monitor and ensure the baud rate is 9600. Depending on which sensor you’re using it might show something like this:</p>
+<p>2) Click the upload button and wait for it to finish</p>
+<p>3) Open up the serial monitor and ensure the baud rate is 9600. Depending on which sensor you’re using it should show something like this:</p>
 <p>Two Pin Sensor (dry)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">1022</div><div class="line">1023</div><div class="line">1022</div><div class="line">1023</div><div class="line">1023</div></pre></td></tr></table></figure>
 <p>Three Pin Sensor (dry)</p>
@@ -229,7 +230,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">302</div><div class="line">302</div><div class="line">302</div><div class="line">302</div><div class="line">302</div></pre></td></tr></table></figure>
 <p>Three Pin Sensor (wet)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">757</div><div class="line">758</div><div class="line">758</div><div class="line">758</div><div class="line">757</div></pre></td></tr></table></figure>
-<p>The numbers will vary depending on the sensor and various other factors.<br>It doesn’t matter what the numbers are as long as there is a significant difference between dry readings and submerged readings.</p>
+<p>The numbers will vary depending on the sensor and various other factors.<br>It doesn’t matter what the numbers are as long as there is a significant difference between dry readings and wet/submerged readings.</p>
 <p><a href="/Blog/2017/02/17/Arduino-Soil-Moisture-Sensor-Calibration/">Use software calibration</a> to turn these raw values into something more user friendly.</p>
 
 
