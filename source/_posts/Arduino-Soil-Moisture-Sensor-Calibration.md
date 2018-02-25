@@ -14,7 +14,7 @@ Soil moisture sensors return somewhat arbitrary values which need to be converte
 
 Example readings:
 
-| Sensor        | Dry           | Wet         |
+| Sensor         | Dry           | Wet         |
 | -------------- | -----------   | ----------- |     
 | 2 Pin          | 1023          | 292         |
 | 3 Pin          | 0             | 773         |
@@ -112,8 +112,15 @@ Raw: 664 | Friendly: 64%
 
 ## Custom Calibration
 
-To properly calibrate the soil moisture sensor you need to first find the minimum and maximum values.
-Note down the raw value when dry, then note down the raw value when submerged.
+To properly calibrate the soil moisture sensor you need to first find the minimum and maximum values for the sensor and the soil. Different soil types may have different conductivity levels and therefore may need to be calibrated differently.
+
+### Find wet and dry values
+
+1) Place the soil moisture sensor in dry soil and note down the raw value.
+
+2) Place the soil moisture sensor in wet soil and note down the raw value.
+
+### Edit the sketch
 
 Edit the following values in the sketch to match your minimum and maxium sensor readings:
 

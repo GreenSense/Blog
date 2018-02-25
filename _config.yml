@@ -70,7 +70,7 @@ theme: clean-blog
 deploy:
   type: git
   repo: https://github.com/GreenSense/Blog.git
-  branch: master
+  branch: gh-pages
 
 disqus_shortname: GreenSenseBlog
 
