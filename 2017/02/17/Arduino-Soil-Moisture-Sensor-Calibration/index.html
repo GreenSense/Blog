@@ -213,8 +213,10 @@ The ProblemSoil moisture sensors retu">
 <p>Swapping these values around should make it show 0% when dry, however this doesn’t fully calibrate the sensor.</p>
 <p>Submerge the sensor in water and you might see something like this when it is supposed to show 100%:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Raw: 660 | Friendly: 64%</div><div class="line">Raw: 662 | Friendly: 64%</div><div class="line">Raw: 663 | Friendly: 64%</div><div class="line">Raw: 664 | Friendly: 64%</div><div class="line">Raw: 664 | Friendly: 64%</div></pre></td></tr></table></figure>
-<h2 id="Custom-Calibration"><a href="#Custom-Calibration" class="headerlink" title="Custom Calibration"></a>Custom Calibration</h2><p>To properly calibrate the soil moisture sensor you need to first find the minimum and maximum values.<br>Note down the raw value when dry, then note down the raw value when submerged.</p>
-<p>Edit the following values in the sketch to match your minimum and maxium sensor readings:</p>
+<h2 id="Custom-Calibration"><a href="#Custom-Calibration" class="headerlink" title="Custom Calibration"></a>Custom Calibration</h2><p>To properly calibrate the soil moisture sensor you need to first find the minimum and maximum values for the sensor and the soil. Different soil types may have different conductivity levels and therefore may need to be calibrated differently.</p>
+<h3 id="Find-wet-and-dry-values"><a href="#Find-wet-and-dry-values" class="headerlink" title="Find wet and dry values"></a>Find wet and dry values</h3><p>1) Place the soil moisture sensor in dry soil and note down the raw value.</p>
+<p>2) Place the soil moisture sensor in wet soil and note down the raw value.</p>
+<h3 id="Edit-the-sketch"><a href="#Edit-the-sketch" class="headerlink" title="Edit the sketch"></a>Edit the sketch</h3><p>Edit the following values in the sketch to match your minimum and maxium sensor readings:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">int dryValue = 0;</div><div class="line">int wetValue = 1023;</div></pre></td></tr></table></figure>
 <p>So they look like this:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">int dryValue = 0;</div><div class="line">int wetValue = 758;</div></pre></td></tr></table></figure>
@@ -275,7 +277,7 @@ The ProblemSoil moisture sensors retu">
 
                     
                 </ul>
-                <p class="copyright text-muted">&copy; 2017 CompulsiveCoder<br></p>
+                <p class="copyright text-muted">&copy; 2018 CompulsiveCoder<br></p>
                 <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
                 <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
             </div>
